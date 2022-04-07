@@ -240,7 +240,7 @@ namespace NetworkDiscovery
 					var process = Process.Start(new ProcessStartInfo
 					{
 						FileName = "cmd",
-						Arguments = $"/c netsh int ipv6 show neigh | grep {ipv6Address}",
+						Arguments = $"/c netsh int ipv6 show neigh | findstr {ipv6Address}",
 						UseShellExecute = false,
 						RedirectStandardOutput = true
 					});
