@@ -43,7 +43,8 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cmsMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiOpenInBrowser = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiOpenWithHttp = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiOpenWithHttps = new System.Windows.Forms.ToolStripMenuItem();
             this.pMain.SuspendLayout();
             this.gbMain.SuspendLayout();
             this.cmsMenu.SuspendLayout();
@@ -137,16 +138,24 @@
             // cmsMenu
             // 
             this.cmsMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiOpenInBrowser});
+            this.tsmiOpenWithHttp,
+            this.tsmiOpenWithHttps});
             this.cmsMenu.Name = "cmsMenu";
-            this.cmsMenu.Size = new System.Drawing.Size(181, 48);
+            this.cmsMenu.Size = new System.Drawing.Size(181, 70);
             // 
-            // tsmiOpenInBrowser
+            // tsmiOpenWithHttp
             // 
-            this.tsmiOpenInBrowser.Name = "tsmiOpenInBrowser";
-            this.tsmiOpenInBrowser.Size = new System.Drawing.Size(180, 22);
-            this.tsmiOpenInBrowser.Text = "Open in browser";
-            this.tsmiOpenInBrowser.Click += new System.EventHandler(this.TsmiOpenInBrowser_Click);
+            this.tsmiOpenWithHttp.Name = "tsmiOpenWithHttp";
+            this.tsmiOpenWithHttp.Size = new System.Drawing.Size(180, 22);
+            this.tsmiOpenWithHttp.Text = "Open with HTTP";
+            this.tsmiOpenWithHttp.Click += new System.EventHandler(this.TsmiOpenWithHttp_Click);
+            // 
+            // tsmiOpenWithHttps
+            // 
+            this.tsmiOpenWithHttps.Name = "tsmiOpenWithHttps";
+            this.tsmiOpenWithHttps.Size = new System.Drawing.Size(180, 22);
+            this.tsmiOpenWithHttps.Text = "Open with HTTPS";
+            this.tsmiOpenWithHttps.Click += new System.EventHandler(this.TsmiOpenWithHttps_Click);
             // 
             // MainForm
             // 
@@ -180,7 +189,8 @@
 		private System.Windows.Forms.ColumnHeader columnHeader7;
 		private System.Windows.Forms.ColumnHeader columnHeader8;
 		private System.Windows.Forms.ContextMenuStrip cmsMenu;
-        private System.Windows.Forms.ToolStripMenuItem tsmiOpenInBrowser;
+        private System.Windows.Forms.ToolStripMenuItem tsmiOpenWithHttp;
+        private System.Windows.Forms.ToolStripMenuItem tsmiOpenWithHttps;
     }
 }
 

@@ -6,11 +6,11 @@ namespace NetworkDiscovery
 {
     public static class Browser
     {
-        public static void Start(string item)
+        public static void Start(string protocol, string item)
         {
             try
             {
-                Process.Start($"http://{item}");
+                Process.Start($"{protocol}://{item}");
             }
             catch (Exception ex)
             {

@@ -42,12 +42,20 @@ namespace NetworkDiscovery
 			}
 		}
 
-		private void TsmiOpenInBrowser_Click(object sender, EventArgs e)
+		private void TsmiOpenWithHttp_Click(object sender, EventArgs e)
 		{
 			foreach (ListViewItem item in lvDevices.SelectedItems)
 			{
-                Browser.Start(item.Text);
+                Browser.Start("http", item.Text);
 			}
 		}
-	}
+
+		private void TsmiOpenWithHttps_Click(object sender, EventArgs e)
+		{
+            foreach (ListViewItem item in lvDevices.SelectedItems)
+            {
+                Browser.Start("https", item.Text);
+            }
+        }
+    }
 }
