@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net;
 
 namespace NetworkDiscovery
@@ -8,27 +9,16 @@ namespace NetworkDiscovery
         public static string GetByIpAddress(string ip)
         {
             string result = string.Empty;
+            IPHostEntry hostInfo;
             try
             {
-                IPHostEntry hostInfo;
-                try
-                {
-                    if (Environment.OSVersion.Version.Major > 5) // From Windows Vista
-                    {
-                        hostInfo = Dns.GetHostEntry(ip);
-                    }
-                    else
-                    {
-                        hostInfo = Dns.GetHostByAddress(ip);
-                    }
-                }
-                catch
-                {
-                    hostInfo = Dns.GetHostEntry(ip);
-                }
+                hostInfo = Dns.GetHostEntry(ip);
                 result = hostInfo.HostName;
             }
-            catch { }
+            catch (Exception ex)
+            {
+                //Debug.WriteLine($"HostNameProvider error: {ex.Message}");
+            }
             return result;
         }
     }

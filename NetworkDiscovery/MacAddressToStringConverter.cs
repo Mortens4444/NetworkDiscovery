@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net.NetworkInformation;
+﻿using System.Net.NetworkInformation;
 using System.Text;
 
 namespace NetworkDiscovery
@@ -8,11 +7,6 @@ namespace NetworkDiscovery
     {
         public static string Convert(PhysicalAddress physicalAddress, char separator = ':')
         {
-            //if (physicalAddress == null)
-            //{
-            //    return String.Empty;
-            //}
-
             string mac = physicalAddress.ToString();
             var friendlyMacAddress = new StringBuilder();
             for (int i = 0; i < mac.Length; i += 2)

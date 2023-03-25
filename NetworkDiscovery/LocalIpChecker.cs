@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System;
+using System.Diagnostics;
+using System.Net;
 
 namespace NetworkDiscovery
 {
@@ -26,7 +28,10 @@ namespace NetworkDiscovery
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"LocalIpChecker error: {ex.Message}");
+            }
             return false;
         }
     }

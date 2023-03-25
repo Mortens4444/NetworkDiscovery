@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
@@ -10,18 +9,16 @@ namespace NetworkDiscovery
 {
     public static class ListViewItemBuilder
     {
-        public static void AddItemIfAvailable(string ipAddressStr, ListView lvDevices)
+        public static ListViewItem Construct(string ipAddressStr)
         {
-            var items = new ArrayList();
-
-            ListViewItem item;
-            item = new ListViewItem(ipAddressStr);
-            item.SubItems.Add(HostNameProvider.GetByIpAddress(ipAddressStr));
+            ListViewItem result;
+            result = new ListViewItem(ipAddressStr);
+            result.SubItems.Add(HostNameProvider.GetByIpAddress(ipAddressStr));
             var ipAddress = IPAddress.Parse(ipAddressStr);
             var phyhicalAddress = MacAddressProvider.GetByIpAddress(ipAddress);
             if (phyhicalAddress != null)
             {
-                item.SubItems.Add(MacAddressToStringConverter.Convert(phyhicalAddress));
+                result.SubItems.Add(MacAddressToStringConverter.Convert(phyhicalAddress));
 
                 if (LocalIpChecker.IsLocal(ipAddressStr))
                 {
@@ -31,10 +28,10 @@ namespace NetworkDiscovery
 
                     if (networkInterface != null)
                     {
-                        item.SubItems.Add(networkInterface.Name);
-                        item.SubItems.Add(networkInterface.NetworkInterfaceType.ToString());
-                        item.SubItems.Add(networkInterface.Description);
-                        item.SubItems.Add(ByteValueFormater.ToHumanReadable(networkInterface.Speed, true));
+                        result.SubItems.Add(networkInterface.Name);
+                        result.SubItems.Add(networkInterface.NetworkInterfaceType.ToString());
+                        result.SubItems.Add(networkInterface.Description);
+                        result.SubItems.Add(ByteValueFormater.ToHumanReadable(networkInterface.Speed, true));
 
                         var stats = networkInterface.GetIPv4Statistics();
                         var previousSentBytes = stats.BytesSent;
@@ -42,14 +39,14 @@ namespace NetworkDiscovery
                         Thread.Sleep(1000);
                         stats = networkInterface.GetIPv4Statistics();
 
-                        item.SubItems.Add(ByteValueFormater.ToHumanReadable(stats.BytesSent - previousSentBytes, false));
-                        item.SubItems.Add(ByteValueFormater.ToHumanReadable(stats.BytesReceived - previousReceivedBytes, false));
+                        result.SubItems.Add(ByteValueFormater.ToHumanReadable(stats.BytesSent - previousSentBytes, false));
+                        result.SubItems.Add(ByteValueFormater.ToHumanReadable(stats.BytesReceived - previousReceivedBytes, false));
                     }
                     else
                     {
                         for (int i = 0; i < 6; i++)
                         {
-                            item.SubItems.Add("N/A");
+                            result.SubItems.Add("N/A");
                         }
                     }
                 }
@@ -57,12 +54,14 @@ namespace NetworkDiscovery
                 {
                     for (int i = 0; i < 6; i++)
                     {
-                        item.SubItems.Add(String.Empty);
+                        result.SubItems.Add(String.Empty);
                     }
                 }
 
-                ListViewItemAppender.AddToList(lvDevices, item);
+                return result;
             }
+
+            return null;
         }
     }
 }

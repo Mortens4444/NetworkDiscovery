@@ -14,6 +14,7 @@ namespace NetworkDiscovery
             }
             catch (Exception ex)
             {
+                Debug.WriteLine($"Browser error: {ex.Message}");
                 MessageBox.Show(ex.Message, ex.GetType().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }

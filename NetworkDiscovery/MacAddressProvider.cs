@@ -85,7 +85,10 @@ namespace NetworkDiscovery
 
                 result = new PhysicalAddress(macByteArray);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                //Debug.WriteLine($"MacAddressProvider error: {ex.Message}");
+            }
             return result;
         }
     }

@@ -45,9 +45,15 @@
             this.cmsMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiOpenWithHttp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpenWithHttps = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.tsProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.tsProgressBar2 = new System.Windows.Forms.ToolStripProgressBar();
+            this.tsslDiscoveryOn = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslIpAddress = new System.Windows.Forms.ToolStripStatusLabel();
             this.pMain.SuspendLayout();
             this.gbMain.SuspendLayout();
             this.cmsMenu.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pMain
@@ -61,6 +67,7 @@
             // 
             // gbMain
             // 
+            this.gbMain.Controls.Add(this.statusStrip1);
             this.gbMain.Controls.Add(this.lvDevices);
             this.gbMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbMain.Location = new System.Drawing.Point(0, 0);
@@ -141,21 +148,56 @@
             this.tsmiOpenWithHttp,
             this.tsmiOpenWithHttps});
             this.cmsMenu.Name = "cmsMenu";
-            this.cmsMenu.Size = new System.Drawing.Size(181, 70);
+            this.cmsMenu.Size = new System.Drawing.Size(167, 48);
             // 
             // tsmiOpenWithHttp
             // 
             this.tsmiOpenWithHttp.Name = "tsmiOpenWithHttp";
-            this.tsmiOpenWithHttp.Size = new System.Drawing.Size(180, 22);
+            this.tsmiOpenWithHttp.Size = new System.Drawing.Size(166, 22);
             this.tsmiOpenWithHttp.Text = "Open with HTTP";
             this.tsmiOpenWithHttp.Click += new System.EventHandler(this.TsmiOpenWithHttp_Click);
             // 
             // tsmiOpenWithHttps
             // 
             this.tsmiOpenWithHttps.Name = "tsmiOpenWithHttps";
-            this.tsmiOpenWithHttps.Size = new System.Drawing.Size(180, 22);
+            this.tsmiOpenWithHttps.Size = new System.Drawing.Size(166, 22);
             this.tsmiOpenWithHttps.Text = "Open with HTTPS";
             this.tsmiOpenWithHttps.Click += new System.EventHandler(this.TsmiOpenWithHttps_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsslDiscoveryOn,
+            this.tsProgressBar,
+            this.tsslIpAddress,
+            this.tsProgressBar2});
+            this.statusStrip1.Location = new System.Drawing.Point(3, 425);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(794, 22);
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // tsProgressBar
+            // 
+            this.tsProgressBar.Name = "tsProgressBar";
+            this.tsProgressBar.Size = new System.Drawing.Size(100, 16);
+            // 
+            // tsProgressBar2
+            // 
+            this.tsProgressBar2.Name = "tsProgressBar2";
+            this.tsProgressBar2.Size = new System.Drawing.Size(100, 16);
+            // 
+            // tsslDiscoveryOn
+            // 
+            this.tsslDiscoveryOn.Name = "tsslDiscoveryOn";
+            this.tsslDiscoveryOn.Size = new System.Drawing.Size(16, 17);
+            this.tsslDiscoveryOn.Text = "...";
+            // 
+            // tsslIpAddress
+            // 
+            this.tsslIpAddress.Name = "tsslIpAddress";
+            this.tsslIpAddress.Size = new System.Drawing.Size(16, 17);
+            this.tsslIpAddress.Text = "...";
             // 
             // MainForm
             // 
@@ -167,9 +209,13 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Network Discovery";
+            this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.pMain.ResumeLayout(false);
             this.gbMain.ResumeLayout(false);
+            this.gbMain.PerformLayout();
             this.cmsMenu.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
 
 		}
@@ -191,6 +237,11 @@
 		private System.Windows.Forms.ContextMenuStrip cmsMenu;
         private System.Windows.Forms.ToolStripMenuItem tsmiOpenWithHttp;
         private System.Windows.Forms.ToolStripMenuItem tsmiOpenWithHttps;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripProgressBar tsProgressBar;
+        private System.Windows.Forms.ToolStripProgressBar tsProgressBar2;
+        private System.Windows.Forms.ToolStripStatusLabel tsslDiscoveryOn;
+        private System.Windows.Forms.ToolStripStatusLabel tsslIpAddress;
     }
 }
 

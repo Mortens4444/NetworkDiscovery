@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics;
+using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace NetworkDiscovery
@@ -8,6 +10,11 @@ namespace NetworkDiscovery
         delegate void VoidResultListViewListViewItemParams(ListView listView, ListViewItem listViewItem);
         public static void AddToList(ListView listView, ListViewItem listViewItem)
         {
+            if (listViewItem == null)
+            {
+                return;
+            }
+
             try
             {
                 if (!listView.InvokeRequired)
@@ -22,7 +29,10 @@ namespace NetworkDiscovery
                     listView.Invoke(addItemToListDelegate, listView, listViewItem);
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"ListViewItemAppender error: {ex.Message}");
+            }
         }
     }
 }
