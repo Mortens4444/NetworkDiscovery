@@ -1,22 +1,19 @@
-﻿using System;
-using System.Diagnostics;
-using System.Windows.Forms;
+﻿using System.Diagnostics;
 
-namespace NetworkDiscovery
+namespace NetworkDiscovery;
+
+public static class Browser
 {
-    public static class Browser
+    public static void Start(string protocol, string item)
     {
-        public static void Start(string protocol, string item)
+        try
         {
-            try
-            {
-                Process.Start($"{protocol}://{item}");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Browser error: {ex.Message}");
-                MessageBox.Show(ex.Message, ex.GetType().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-            }
+            Process.Start($"{protocol}://{item}");
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Browser error: {ex.Message}");
+            MessageBox.Show(ex.Message, ex.GetType().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
         }
     }
 }

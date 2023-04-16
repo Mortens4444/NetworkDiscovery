@@ -1,25 +1,27 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Net;
 
-namespace NetworkDiscovery
+namespace NetworkDiscovery;
+
+public static class HostNameProvider
 {
-    public static class HostNameProvider
+    public static string GetByIpAddress(string ip)
     {
-        public static string GetByIpAddress(string ip)
+        string result = string.Empty;
+        IPHostEntry hostInfo;
+        try
         {
-            string result = string.Empty;
-            IPHostEntry hostInfo;
-            try
-            {
-                hostInfo = Dns.GetHostEntry(ip);
-                result = hostInfo.HostName;
-            }
-            catch (Exception ex)
-            {
-                //Debug.WriteLine($"HostNameProvider error: {ex.Message}");
-            }
-            return result;
+            hostInfo = Dns.GetHostEntry(ip);
+            result = hostInfo.HostName;
         }
+#if DEBUG
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"HostNameProvider error: {ex.Message}");
+        }
+#else
+        catch { }
+#endif
+        return result;
     }
 }

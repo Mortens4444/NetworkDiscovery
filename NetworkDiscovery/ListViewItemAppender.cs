@@ -1,38 +1,34 @@
 ﻿using System.Diagnostics;
-using System;
-using System.Drawing;
-using System.Windows.Forms;
 
-namespace NetworkDiscovery
+namespace NetworkDiscovery;
+
+public static class ListViewItemAppender
 {
-    public static class ListViewItemAppender
+    delegate void VoidResultListViewListViewItemParams(ListView listView, ListViewItem listViewItem);
+    public static void AddToList(ListView listView, ListViewItem? listViewItem)
     {
-        delegate void VoidResultListViewListViewItemParams(ListView listView, ListViewItem listViewItem);
-        public static void AddToList(ListView listView, ListViewItem listViewItem)
+        if (listViewItem == null)
         {
-            if (listViewItem == null)
-            {
-                return;
-            }
+            return;
+        }
 
-            try
+        try
+        {
+            if (!listView.InvokeRequired)
             {
-                if (!listView.InvokeRequired)
-                {
-                    var backColor = listView.Items.Count % 2 == 0 ? listView.BackColor : Color.LightBlue;
-                    listViewItem.BackColor = backColor;
-                    listView.Items.Add(listViewItem);
-                }
-                else
-                {
-                    var addItemToListDelegate = new VoidResultListViewListViewItemParams(AddToList);
-                    listView.Invoke(addItemToListDelegate, listView, listViewItem);
-                }
+                var backColor = listView.Items.Count % 2 == 0 ? listView.BackColor : Color.LightBlue;
+                listViewItem.BackColor = backColor;
+                listView.Items.Add(listViewItem);
             }
-            catch (Exception ex)
+            else
             {
-                Debug.WriteLine($"ListViewItemAppender error: {ex.Message}");
+                var addItemToListDelegate = new VoidResultListViewListViewItemParams(AddToList);
+                listView.Invoke(addItemToListDelegate, listView, listViewItem);
             }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"ListViewItemAppender error: {ex.Message}");
         }
     }
 }
